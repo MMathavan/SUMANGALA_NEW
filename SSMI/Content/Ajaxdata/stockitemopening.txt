@@ -1,0 +1,4 @@
+{"data":[
+{"SNO":1,"GROUP":"Chain","ITEM":"Ball Chain 67T","LOTNO":"LI0001","GWGHT":180.500,"TUNCH":92,"PWGHT":166.060,"TRANMID":"1"},
+{"SNO":2,"GROUP":"Chain","ITEM":"Ball Chain 92T","LOTNO":"LI0002","GWGHT":2596.287,"TUNCH":92,"PWGHT":2388.584,"TRANMID":"2"}
+]}

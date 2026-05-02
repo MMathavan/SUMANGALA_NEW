@@ -1,0 +1,89 @@
+@model IEnumerable<SSMI.Models.LedgerMasterNew>
+@{
+    ViewBag.Title = "Customer Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  @ViewBag.Title <div class="clearfix"> </div></h3>
+        </div>
+        <div class="panel-body">
+            <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>State</th>
+                        <th>Pincode</th>
+                        <th>GST No</th>
+                        <th>Credit Period</th>
+                        <th>Credit Limit</th>
+                        <th>Sync Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.LegerName</td>
+                            <td>@row.StateName</td>
+                            <td>@row.Pincode</td>
+                            <td>@row.GSTinNo</td>
+                            <td>@row.CreditPeriod</td>
+                            <td>@row.CreditLimit</td>
+                            <td>
+                                @if (row.MDispStatus == 1)
+                                {
+                                    <span class="label label-success">Synced</span>
+                                }
+                                else
+                                {
+                                    <span class="label" style="background-color: orange; color: #fff;">Not Synced</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-info btn-sm cm-view" data-id="@row.Guid">View</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="customerDetailsModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px;">
+        <div class="modal-content clearfix" id="customerDetailsModalContent">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable({
+                stateSave: true,
+                "language": {
+                    "lengthMenu": '_MENU_ rows',
+                    "search": '<i class="fa fa-search"></i>',
+                    "searchPlaceholder": "search",
+                    "paginate": {
+                        "previous": '<i class="fa fa-angle-left"></i>',
+                        "next": '<i class="fa fa-angle-right"></i>'
+                    }
+                }
+            });
+
+            $(document).on('click', 'a.cm-view', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#customerDetailsModalContent').html('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">Customer Details</h4></div><div class="modal-body">Loading...</div>');
+                $('#customerDetailsModal').modal('show');
+                $('#customerDetailsModalContent').load('@Url.Action("Details", "CustomerMaster")' + '?id=' + encodeURIComponent(id));
+            });
+        });
+    </script>
+}

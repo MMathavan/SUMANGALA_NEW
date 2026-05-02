@@ -1,0 +1,4 @@
+{"data":[
+{"IDATE":"18.05.2018","TRANNO":"0001","GROUP":"Chain","ITEM":"Kaccha Sona","GWGHT":1349.179,"TUNCH":92,"TRANMID":"1"},
+{"IDATE":"18.05.2018","TRANNO":"0002","GROUP":"Chain","ITEM":"Tezabi","GWGHT":5109.308,"TUNCH":92,"TRANMID":"2"}
+]}

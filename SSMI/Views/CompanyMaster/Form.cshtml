@@ -1,0 +1,218 @@
+﻿@using SSMI.Models;
+@model SSMI.Models.CompanyMaster
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  Company Master  <div class="clearfix"> </div></h3>
+        </div>
+
+        @Html.Raw(ViewBag.msg)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    <form action="@Url.Content("~/CompanyMaster/savedata")" method="post" accept-charset="utf-8" id="companymasterform" data-ng-controller="myController" name="companymasterform">
+
+
+                        @Html.ValidationSummary(true)
+
+                        <fieldset id="CompanyMasterForm_info">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <div class="col-md-4 hidden">
+                                        <div class="form-group">
+                                            <label>Primary  </label>
+                                            @Html.TextBoxFor(model => Model.COMPID, new { @class = "form-control  COMPID", @id = "COMPID" })
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <fieldset style="width:100%">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Name </label>
+                                                @Html.TextBoxFor(model => Model.COMPNAME, new { @class = "form-control  COMPNAME", @id = "COMPNAME" })
+                                                <input type="text" value="@Model.COMPNAME" name="i_COMPNAME" hidden />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Display Name </label>
+                                                @Html.TextBoxFor(model => Model.COMPDNAME, new { @class = "form-control  COMPDNAME", @id = "COMPDNAME" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Address </label>
+                                                @Html.TextAreaFor(model => Model.COMPADDR, new { @class = "form-control  COMPADDR", @id = "COMPADDR", @rows = "5" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Landline  </label>
+                                                @Html.TextBoxFor(model => Model.COMPPHN1, new { @class = "form-control  COMPPHN1", @id = "COMPPHN1" })
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Landline 1 </label>
+                                                @Html.TextBoxFor(model => Model.COMPPHN2, new { @class = "form-control  COMPPHN2", @id = "COMPPHN2" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Mobile  </label>
+                                                @Html.TextBoxFor(model => Model.COMPPHN3, new { @class = "form-control  COMPPHN3", @id = "COMPPHN3" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Mobile 1 </label>
+                                                @Html.TextBoxFor(model => Model.COMPPHN4, new { @class = "form-control  COMPPHN4", @id = "COMPPHN4" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Mail </label>
+                                                @Html.TextBoxFor(model => Model.COMPMAIL, new { @class = "form-control  COMPMAIL", @id = "COMPMAIL" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Contact Person </label>
+                                                @Html.TextBoxFor(model => Model.COMPCPRSN, new { @class = "form-control  COMPCPRSN", @id = "COMPCPRSN" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset style="width:100%">
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>GST No </label>
+                                                @Html.TextBoxFor(model => Model.COMPGSTNO, new { @class = "form-control  COMPGSTNO", @id = "COMPGSTNO" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>PAN No</label>
+                                                @Html.TextBoxFor(model => Model.COMPPANNO, new { @class = "form-control  COMPPANNO", @id = "COMPPANNO" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>TAN No</label>
+                                                @Html.TextBoxFor(model => Model.COMPTANNO, new { @class = "form-control  COMPTANNO", @id = "COMPTANNO" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-1">
+
+                                            <div class="form-group">
+                                                <label>Code </label>
+                                                @Html.TextBoxFor(model => Model.COMPCODE, new { @class = "form-control COMPCODE", @id = "COMPCODE" })
+                                                <input type="text" value="@Model.COMPCODE" name="i_COMPCODE" hidden />
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Status </label>
+                                                @Html.DropDownList("DISPSTATUS", null, new { @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <div class="col-md-12 hidden">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CUSRID </label>
+                                            @Html.TextBoxFor(model => Model.CUSRID, new { @class = "form-control CUSRID", @id = "CUSRID" })
+                                            @Html.ValidationMessageFor(model => model.CUSRID)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>LMUSRID </label>
+                                            @Html.TextBoxFor(model => Model.LMUSRID, new { @class = "form-control  LMUSRID readonly", @id = "LMUSRID" })
+                                            @Html.ValidationMessageFor(model => model.LMUSRID)
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+
+                                </div>
+                            </div>
+
+                            <input type="button" name="back" value="Go Back" class="btn btn-primary" onclick="JavaScript:history.back()" />
+                            <input type="submit" name="submit" value="Submit" class="btn btn-primary pull-right" />
+
+
+
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {   //..............dISPLAY NAME..........//
+            $("#COMPNAME").blur(function () {
+                var COMPNAME = $('#COMPNAME').val();
+                $('#COMPDNAME').val(COMPNAME);
+            });//END
+        })
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

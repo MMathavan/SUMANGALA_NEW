@@ -1,0 +1,53 @@
+﻿@model SSMI.Models.AccountViewModels.UserPermissionsViewModel
+@{ ViewBag.Title = "UserPermissions"; }
+
+
+
+<div class="col-lg-12">
+    @*<h2>@ViewBag.Title.</h2>*@
+    <h2>Effective Role Permissions for user: @Html.DisplayFor(model => model.UserName)</h2>
+    <hr />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  Effective Role Permissions  <div class="clearfix"> </div></h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Role Permission
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.Roles)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RoleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

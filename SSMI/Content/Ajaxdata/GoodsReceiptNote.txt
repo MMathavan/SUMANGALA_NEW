@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","PONO":"0128","ANAME":"Jizhou Printing Technology(Shangai)Co Ltd","NAMT":"325000.00","DISPSTATUS":"QC Finished","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","PONO":"0129","ANAME":"Kishu Giken Kogyo Co. Ltd","NAMT":"175000.00","DISPSTATUS":"QC Pending","TRANMID":"2"}
+]}

@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SSMI-Tally</title>
+
+
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link href="~/Content/themes/base/minified/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/minified/jquery.ui.datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/minified/jquery-ui.theme.min.css" rel="stylesheet" />
+    @*<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    @*<link rel="stylesheet" type="text/css" href="~/crmassets/select2/css/select2.min.css" />*@
+
+    @Styles.Render("~/Content/css")
+
+    <link href="@Url.Content("~/Content/font-awesome-4.1.0/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+
+
+    <style>
+
+        .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+            font-family: Arial,sans-serif;
+            font-size: 1em;
+            COLOR: black;
+        }
+
+        #save {
+            cursor: pointer;
+        }
+
+        #submit {
+            cursor: pointer;
+        }
+
+        #save {
+            cursor: pointer;
+        }
+
+        #checkbox {
+            cursor: pointer;
+        }
+
+
+        /* Top Navigation */
+
+        .top-nav {
+            padding: 15px 15px;
+        }
+
+            .top-nav > li {
+                display: inline-block;
+                float: left;
+            }
+
+                .top-nav > li > a {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    line-height: 20px;
+                    color: #fff;
+                }
+
+                    .top-nav > li > a:hover,
+                    .top-nav > li > a:focus,
+                    .top-nav > .open > a,
+                    .top-nav > .open > a:hover,
+                    .top-nav > .open > a:focus {
+                        color: #fff;
+                        background-color: #000;
+                    }
+
+            .top-nav > .open > .dropdown-menu {
+                float: left;
+                position: absolute;
+                margin-top: 0;
+                border: 1px solid rgba(0,0,0,.15);
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                background-color: #fff;
+                -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+                box-shadow: 0 6px 12px rgba(0,0,0,.175);
+                min-width: 200px;
+            }
+
+                .top-nav > .open > .dropdown-menu > li > a {
+                    white-space: normal;
+                    border: 1px dotted rgba(0,0,0,.175);
+                }
+
+        ul.message-dropdown {
+            padding: 0;
+            max-height: 250px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        li.message-preview {
+            width: 275px;
+            border-bottom: 1px solid rgba(0,0,0,.15);
+        }
+
+            li.message-preview > a {
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+        li.message-footer {
+            margin: 5px 0;
+        }
+
+        ul.alert-dropdown {
+            width: 200px;
+        }
+
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 5px 5px 0px 5px;
+            margin: 0;
+            height: 25px;
+        }
+
+        .navbar-inverse {
+            /*background:#003366; border-radius:0; color:#fff;*/
+            background: #000;
+            border-radius: 0;
+            color: #fff;
+        }
+
+
+        .alert {
+            padding: 5px 0 5px 0;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div id="BaseUrl" data-baseurl="@Context.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")"></div>
+    <div id="1wrapper">
+        @Html.Action("Navbar", "Navbar", new { controller = ViewContext.RouteData.Values["Controller"].ToString(), action = ViewContext.RouteData.Values["Action"].ToString() })
+
+        <div id="page-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*<script type="text/javascript" language="javascript" src="../../Scripts/foundation/foundation.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+        <script src="~/Scripts/jquery.datetimepicker.js"></script>*@
+
+    <script src="~/Scripts/jquery-ft-min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    @*<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
+        </script>*@
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+    </script>
+
+
+
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script src="~/Scripts/fusion.js"></script>
+    @*<script src="~/Scripts/sweetalert2.all.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+
+    @*<script src="~/crmassets/select2/js/select2.full.min.js"></script>
+        <script src="~/crmassets/select2/js/select2.min.js"></script>
+        <script src="~/crmassets/forms/select2/select2.init.js"></script>*@
+
+    @RenderSection("scripts", required: false)
+
+    <div class="footer bg-warning">
+        <p>All right reserved.  &copy;   @Session["GYrDesc"]</p>
+    </div>
+</body>
+</html>
+
+<script>
+
+
+        //restrict backspace goback event
+
+        //$(document).on("keydown", function (e) {
+        //    if (e.which === 8 && !$(e.target).is("input, textarea")) {
+        //        e.preventDefault();
+        //    }
+        //});
+        //$(document).on("keydown", function (e) {
+        //    if (e.which === 8 && !$(e.target).is("input:not([readonly]):not([type=radio]):not([type=checkbox]),select, textarea, [contentEditable], [contentEditable=true]")) {
+        //        e.preventDefault();
+        //    }
+        //});
+        //$(document).on("keypress", function (e) {
+        //    if (e.which === 8 && !$(e.target.type=="select")) {
+        //        e.preventDefault();
+        //    }
+        //});
+        //restrict enter key submit event
+
+        //function stopRKey(evt) {
+        //    var evt = (evt) ? evt : ((event) ? event : null);
+        //    var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        //    if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+        //}
+        //document.onkeypress = stopRKey;
+
+    $(document).ready(function() {
+        $.ajax({
+            type: 'get',
+            url: '@Url.Action("GetRequestDetail", "Home")', // we are calling json method
+            dataType: 'json',
+            success: function (data) {
+                //   var notif_cnt = data.length;
+                var listitem = "";
+              //  alert("");
+                // if (data != "") {
+                //  $("#NOTIFY_COUNT").html(notif_cnt);
+                $.each(data, function (key, value) {
+                    listitem += '<li>  <a href="#" class="media"> <span class="badge badge-success pull-right">' + value.name + '</span> <div class="media-left"> <span class="icon-wrap icon-circle bg-danger"> <i class="fa fa-hdd-o fa-lg"></i> </span>   </div>  <div class="media-body"> <div class="text-nowrap">' + value.id + '</div> <small class="text-muted hide">' + value.name + '</small>  </div></a></li>';
+                   // alert(listitem);
+                })
+               // alert(listitem);
+                $("#CUSTOM_STOCK_NOTIFY").html(listitem);
+                //  }
+            }
+        });
+
+
+
+        $.ajax({
+            type: 'get',
+            url: '@Url.Action("GetIssueDetail", "Home")', // we are calling json method
+            dataType: 'json',
+            success: function (data) {
+                //   var notif_cnt = data.length;
+                var listitem = "";
+                //  alert("");
+                // if (data != "") {
+                //  $("#NOTIFY_COUNT").html(notif_cnt);
+                $.each(data, function (key, value) {
+                    listitem += '<li>  <a href="#" class="media"> <span class="badge badge-success pull-right">' + value.name + '</span> <div class="media-left"> <span class="icon-wrap icon-circle bg-danger"> <i class="fa fa-hdd-o fa-lg"></i> </span>   </div>  <div class="media-body"> <div class="text-nowrap">' + value.id + '</div> <small class="text-muted hide">' + value.name + '</small>  </div></a></li>';
+                    // alert(listitem);
+                })
+                // alert(listitem);
+                $("#ISSUE_NOTIFY").html(listitem);
+                //  }
+            }
+        });
+
+        $.ajax({
+            type: 'get',
+            url: '@Url.Action("GetPurchaseDetail", "Home")', // we are calling json method
+            dataType: 'json',
+            success: function (data) {
+                //   var notif_cnt = data.length;
+                var listitem = "";
+                //  alert("");
+                // if (data != "") {
+                //  $("#NOTIFY_COUNT").html(notif_cnt);
+                $.each(data, function (key, value) {
+                    listitem += '<li>  <a href="#" class="media"> <span class="badge badge-success pull-right">' + value.name + '</span> <div class="media-left"> <span class="icon-wrap icon-circle bg-danger"> <i class="fa fa-hdd-o fa-lg"></i> </span>   </div>  <div class="media-body"> <div class="text-nowrap">' + value.id + '</div> <small class="text-muted hide">' + value.name + '</small>  </div></a></li>';
+                    // alert(listitem);
+                })
+                // alert(listitem);
+                $("#PURCHASE_NOTIFY").html(listitem);
+                //  }
+            }
+        });
+
+    });
+
+
+</script>
+

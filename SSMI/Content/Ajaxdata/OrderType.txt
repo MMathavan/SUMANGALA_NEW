@@ -1,0 +1,5 @@
+{"data":[
+{"DSGNCODE":"0001","DSGNDESC":"Invoice","DISPSTATUS":"Enabled","MID":"1"},
+{"DSGNCODE":"0002","DSGNDESC":"Demo","DISPSTATUS":"Enabled","MID":"2"},
+{"DSGNCODE":"0003","DSGNDESC":"Proforma Invoice","DISPSTATUS":"Enabled","MID":"3"}
+]}

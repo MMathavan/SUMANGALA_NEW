@@ -1,0 +1,4 @@
+{"data":[
+{"IDATE":"29-07-2019","ISSUENO":"0001","TYPE":"OPF","REFNO":"0001","ANAME":"Ramesh","SNAME":"Ravi Raj","DISPSTATUS":"Completed","TRANMID":"1"},
+{"IDATE":"29-07-2019","ISSUENO":"0002","TYPE":"IBPO","REFNO":"0002","ANAME":"Suresh","SNAME":"Ravi Raj","DISPSTATUS":"Completed","TRANMID":"2"}
+]}

@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","ANAME":"Symega Food Ingredients Ltd.","NAMT":"0001","DISPSTATUS":"","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","ANAME":"Fusiontec Software","NAMT":"0002","DISPSTATUS":"","TRANMID":"2"}
+]}

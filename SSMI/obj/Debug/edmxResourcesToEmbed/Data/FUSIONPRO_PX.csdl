@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FUSIONPRO_PXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FUSIONPRO_PXEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VW_USER_DETAILS" EntityType="FUSIONPRO_PXModel.VW_USER_DETAILS" />
+    <EntitySet Name="AspNetUsers" EntityType="FUSIONPRO_PXModel.AspNetUser" />
+    <FunctionImport Name="PR_ACCOUNTINGYEAR_ID_CHK" ReturnType="Collection(FUSIONPRO_PXModel.PR_ACCOUNTINGYEAR_ID_CHK_Result)">
+      <Parameter Name="PFYear" Mode="In" Type="Int32" />
+      <Parameter Name="PTYear" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PR_COMPANYACCOUNTINGDETAIL_ID_CHK" ReturnType="Collection(FUSIONPRO_PXModel.PR_COMPANYACCOUNTINGDETAIL_ID_CHK_Result)">
+      <Parameter Name="PCompId" Mode="In" Type="Int32" />
+      <Parameter Name="PYrId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="pr_Search_Roles" ReturnType="Collection(FUSIONPRO_PXModel.pr_Search_Roles_Result)">
+      <Parameter Name="FilterTerm" Mode="In" Type="String" />
+      <Parameter Name="SortIndex" Mode="In" Type="Int32" />
+      <Parameter Name="SortDirection" Mode="In" Type="String" />
+      <Parameter Name="StartRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="EndRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRowsCount" Mode="InOut" Type="Int32" />
+      <Parameter Name="FilteredRowsCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="pr_SearchCompanyMaster" ReturnType="Collection(FUSIONPRO_PXModel.pr_SearchCompanyMaster_Result)">
+      <Parameter Name="FilterTerm" Mode="In" Type="String" />
+      <Parameter Name="SortIndex" Mode="In" Type="Int32" />
+      <Parameter Name="SortDirection" Mode="In" Type="String" />
+      <Parameter Name="StartRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="EndRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRowsCount" Mode="InOut" Type="Int32" />
+      <Parameter Name="FilteredRowsCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="pr_SearchEmployeeMaster" ReturnType="Collection(FUSIONPRO_PXModel.pr_SearchEmployeeMaster_Result)">
+      <Parameter Name="FilterTerm" Mode="In" Type="String" />
+      <Parameter Name="SortIndex" Mode="In" Type="Int32" />
+      <Parameter Name="SortDirection" Mode="In" Type="String" />
+      <Parameter Name="StartRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="EndRowNum" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRowsCount" Mode="InOut" Type="Int32" />
+      <Parameter Name="FilteredRowsCount" Mode="InOut" Type="Int32" />
+      <Parameter Name="PDEPTID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="VW_USER_DETAILS">
+    <Key>
+      <PropertyRef Name="GroupId" />
+      <PropertyRef Name="GroupName" />
+    </Key>
+    <Property Name="GroupId" Type="Int32" Nullable="false" />
+    <Property Name="GroupName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Emplid" Type="Int32" Nullable="false" />
+    <Property Name="EmplName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="PR_ACCOUNTINGYEAR_ID_CHK_Result">
+    <Property Type="Int32" Name="YRID" Nullable="false" />
+    <Property Type="String" Name="YRDESC" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="YRID1" Nullable="false" />
+    <Property Type="DateTime" Name="FDATE" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="TDATE" Nullable="true" Precision="16" />
+    <Property Type="String" Name="YRDESC1" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="CUSRID" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="PRCSDATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PR_COMPANYACCOUNTINGDETAIL_ID_CHK_Result">
+    <Property Type="Int32" Name="COMPYID" Nullable="false" />
+    <Property Type="Int32" Name="COMPID" Nullable="true" />
+    <Property Type="Int32" Name="YRID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="pr_Search_Roles_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Descp" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SDPTNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="pr_SearchCompanyMaster_Result">
+    <Property Type="String" Name="COMPNAME" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="COMPADDR" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="COMPPHN1" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="COMPCPRSN" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="COMPMAIL" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="COMPID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="pr_SearchEmployeeMaster_Result">
+    <Property Type="String" Name="CATENAME" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CATEPHN1" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="CATEDOJ" Nullable="true" Precision="16" />
+    <Property Type="String" Name="DISPSTATUS" Nullable="true" MaxLength="8" />
+    <Property Type="Int32" Name="CATEID" Nullable="true" />
+  </ComplexType>
+</Schema>

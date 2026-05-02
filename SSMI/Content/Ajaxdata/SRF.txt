@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","ANAME":"Symega Food Ingredients Ltd.","TYPE":"Ashok Kumar","NAMT":"South","DISPSTATUS":"Approved","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","ANAME":"Fusiontec Software","TYPE":"Ashok Kumar","NAMT":"South","DISPSTATUS":"Pending","TRANMID":"2"}
+]}

@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","ANAME":"Jizhou Printing Technology(Shangai)Co Ltd","DISPSTATUS":"","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","ANAME":"Kishu Giken Kogyo Co. Ltd","DISPSTATUS":"","TRANMID":"2"}
+]}

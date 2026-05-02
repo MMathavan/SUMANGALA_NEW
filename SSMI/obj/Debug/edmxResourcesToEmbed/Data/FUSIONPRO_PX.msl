@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FUSIONPRO_PXModelStoreContainer" CdmEntityContainer="FUSIONPRO_PXEntities">
+    <EntitySetMapping Name="VW_USER_DETAILS">
+      <EntityTypeMapping TypeName="FUSIONPRO_PXModel.VW_USER_DETAILS">
+        <MappingFragment StoreEntitySet="VW_USER_DETAILS">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="FUSIONPRO_PXModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="EmplName" ColumnName="EmplName" />
+          <ScalarProperty Name="Emplid" ColumnName="Emplid" />
+          <ScalarProperty Name="NPassword" ColumnName="NPassword" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PR_ACCOUNTINGYEAR_ID_CHK" FunctionName="FUSIONPRO_PXModel.Store.PR_ACCOUNTINGYEAR_ID_CHK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FUSIONPRO_PXModel.PR_ACCOUNTINGYEAR_ID_CHK_Result">
+          <ScalarProperty Name="YRID" ColumnName="YRID" />
+          <ScalarProperty Name="YRDESC" ColumnName="YRDESC" />
+          <ScalarProperty Name="YRID1" ColumnName="YRID1" />
+          <ScalarProperty Name="FDATE" ColumnName="FDATE" />
+          <ScalarProperty Name="TDATE" ColumnName="TDATE" />
+          <ScalarProperty Name="YRDESC1" ColumnName="YRDESC1" />
+          <ScalarProperty Name="CUSRID" ColumnName="CUSRID" />
+          <ScalarProperty Name="PRCSDATE" ColumnName="PRCSDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PR_COMPANYACCOUNTINGDETAIL_ID_CHK" FunctionName="FUSIONPRO_PXModel.Store.PR_COMPANYACCOUNTINGDETAIL_ID_CHK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FUSIONPRO_PXModel.PR_COMPANYACCOUNTINGDETAIL_ID_CHK_Result">
+          <ScalarProperty Name="COMPYID" ColumnName="COMPYID" />
+          <ScalarProperty Name="COMPID" ColumnName="COMPID" />
+          <ScalarProperty Name="YRID" ColumnName="YRID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_Search_Roles" FunctionName="FUSIONPRO_PXModel.Store.pr_Search_Roles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FUSIONPRO_PXModel.pr_Search_Roles_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Descp" ColumnName="Descp" />
+          <ScalarProperty Name="SDPTNAME" ColumnName="SDPTNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_SearchCompanyMaster" FunctionName="FUSIONPRO_PXModel.Store.pr_SearchCompanyMaster">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FUSIONPRO_PXModel.pr_SearchCompanyMaster_Result">
+          <ScalarProperty Name="COMPNAME" ColumnName="COMPNAME" />
+          <ScalarProperty Name="COMPADDR" ColumnName="COMPADDR" />
+          <ScalarProperty Name="COMPPHN1" ColumnName="COMPPHN1" />
+          <ScalarProperty Name="COMPCPRSN" ColumnName="COMPCPRSN" />
+          <ScalarProperty Name="COMPMAIL" ColumnName="COMPMAIL" />
+          <ScalarProperty Name="COMPID" ColumnName="COMPID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_SearchEmployeeMaster" FunctionName="FUSIONPRO_PXModel.Store.pr_SearchEmployeeMaster">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FUSIONPRO_PXModel.pr_SearchEmployeeMaster_Result">
+          <ScalarProperty Name="CATENAME" ColumnName="CATENAME" />
+          <ScalarProperty Name="CATEPHN1" ColumnName="CATEPHN1" />
+          <ScalarProperty Name="CATEDOJ" ColumnName="CATEDOJ" />
+          <ScalarProperty Name="DISPSTATUS" ColumnName="DISPSTATUS" />
+          <ScalarProperty Name="CATEID" ColumnName="CATEID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

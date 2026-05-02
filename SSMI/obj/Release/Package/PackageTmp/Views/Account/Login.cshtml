@@ -1,0 +1,262 @@
+﻿@model SSMI.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<style>
+    .form-signin {
+        margin: 0 auto;
+        max-width: 330px;
+        padding: 15px;
+    }
+
+
+
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    body {
+        background: url('../../Content/images/bg.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    .login-form {
+        font: 16px/2em Lato, serif;
+        margin: 100px auto;
+        max-width: 400px;
+    }
+
+    form[role=login] {
+        color: #5d5d5d;
+        background: #f2f2f2;
+        padding: 26px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+    }
+
+        form[role=login] img {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 35px;
+        }
+
+        form[role=login] input,
+        form[role=login] button {
+            font-size: 18px;
+            margin: 16px 0;
+        }
+
+        form[role=login] > div {
+            text-align: center;
+        }
+
+    .form-links {
+        text-align: center;
+        margin-top: 1em;
+        margin-bottom: 50px;
+    }
+
+        .form-links a {
+            color: #fff;
+        }
+</style>
+
+<section class="container">
+
+    <section class="login-form">
+
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-signin", role = "login" }))
+            {
+                @Html.AntiForgeryToken()
+                <img src="~/Content/images/logo.png" class="img-responsive" alt="" />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.ValidationMessageFor(m => m.COMPID)
+                @Html.DropDownList("COMPID", null, new { @class = "form-control hide" })
+
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", value = "", placeholder = "UserName" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = "", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                @Html.DropDownList("COMPYID", null, new { @class = "form-control hide" })
+
+                @*@Html.TextBoxFor(m => m.LDATE, new { @class = "form-control LDATE datepicker", @id = "LDATE", @Value = @System.Web.HttpContext.Current.Session["LDATE"], @data_Val = false })*@
+                @Html.TextBoxFor(m => m.LDATE, new { @class = "form-control LDATE", @id = "LDATE", @Value = @System.Web.HttpContext.Current.Session["LDATE"], @data_Val = false })
+
+                @*<label class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        Remember me
+                    </label>*@
+                @*<input type="text" class="span2" value="27-01-2018" data-date-format="dd-mm-yyyy" id="dp2" Value = @System.Web.HttpContext.Current.Session["LDATE"]>*@
+                <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" />
+            }
+             <div class="form-links">
+                <a href="http://shefa.co.in/" target="_blank">www.shefa.co.in   </a>
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<!-- /.container-fluid -->
+@section Scripts {
+
+    <script>
+
+        localStorage.clear();
+        $(function () {
+            $("#LDATE").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+
+                dateFormat: 'dd-mm-yy',
+                //onClose: function (selectedDate) {
+                //    $("#to").datepicker("option", "minDate", selectedDate);
+                //}
+            });
+        })
+    </script>
+
+    @*<script>
+                    $(function () {
+
+
+
+
+        $(document).foundation({
+        "magellan-expedition": {
+          active_class: 'active', // specify the class used for active sections
+          threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
+          destination_threshold: 20, // pixels from the top of destination for it to be considered active
+          throttle_delay: 50, // calculation throttling to increase framerate
+          fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
+          offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
+        }
+        });
+
+
+                        window.prettyPrint && prettyPrint();
+                        $('#dp1').fdatepicker({
+                            initialDate: '27-01-2018',
+                            format: 'dd-mm-yyyy',
+                            // keyboardNavigation: false,
+                            disableDblClickSelection: true,
+                            leftArrow:'<<',
+                            rightArrow:'>>',
+                            closeIcon:'X',
+                            closeButton: true
+                            // autoShow: false
+                        });
+
+
+                        $('#dp2').fdatepicker({
+                            closeButton: true
+                        });
+                        // $('#dp3').fdatepicker();
+
+
+                        $('#dpt').fdatepicker({
+                            format: 'dd-mm-yyyy hh:ii',
+                            disableDblClickSelection: true,
+                            language: 'vi',
+                            pickTime: true
+                        });
+
+                        // datepicker limited to months
+                        $('#dpMonths').fdatepicker();
+
+                        // Icon font datapicker
+                        $('#dpi').fdatepicker({
+                            leftArrow: '<i class="material-icons">keyboard_arrow_left</i>',
+                            rightArrow: '<i class="material-icons">keyboard_arrow_right</i>',
+                            closeButton: true,
+                            closeIcon: '<i class="material-icons">close</i>',
+                        });
+
+
+                        // implementation of custom elements instead of inputs
+                        var startDate = new Date(2012, 1, 20);
+                        var endDate = new Date(2012, 1, 25);
+                        $('#dp4').fdatepicker()
+                            .on('changeDate', function (ev) {
+                            if (ev.date.valueOf() > endDate.valueOf()) {
+                                $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+                            } else {
+                                $('#alert').hide();
+                                startDate = new Date(ev.date);
+                                $('#startDate').text($('#dp4').data('date'));
+                            }
+                            $('#dp4').fdatepicker('hide');
+                        });
+                        $('#dp5').fdatepicker()
+                            .on('changeDate', function (ev) {
+                            if (ev.date.valueOf() < startDate.valueOf()) {
+                                $('#alert').show().find('strong').text('The end date can not be less then the start date');
+                            } else {
+                                $('#alert').hide();
+                                endDate = new Date(ev.date);
+                                $('#endDate').text($('#dp5').data('date'));
+                            }
+                            $('#dp5').fdatepicker('hide');
+                        });
+
+
+
+
+
+
+
+
+
+                        // implementation of disabled form fields
+                        var nowTemp = new Date();
+                        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                        var checkin = $('#dpd1').fdatepicker({
+                            onRender: function (date) {
+                                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                            }
+                        }).on('changeDate', function (ev) {
+                            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                                var newDate = new Date(ev.date)
+                                newDate.setDate(newDate.getDate() + 1);
+                                checkout.update(newDate);
+                            }
+                            checkin.hide();
+                            $('#dpd2')[0].focus();
+                        }).data('datepicker');
+                        var checkout = $('#dpd2').fdatepicker({
+                            onRender: function (date) {
+                                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+                            }
+                        }).on('changeDate', function (ev) {
+                            checkout.hide();
+                        }).data('datepicker');
+                    });
+        </script>
+
+            @Scripts.Render("~/bundles/jqueryval")*@
+}
+

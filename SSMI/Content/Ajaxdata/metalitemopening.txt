@@ -1,0 +1,4 @@
+{"data":[
+{"SNO":1,"GROUP":"Chain","ITEM":"Kaccha Sona","GWGHT":1349.179,"TUNCH":92,"TRANMID":"1"},
+{"SNO":2,"GROUP":"Chain","ITEM":"Tezabi","GWGHT":5109.308,"TUNCH":92,"TRANMID":"2"}
+]}

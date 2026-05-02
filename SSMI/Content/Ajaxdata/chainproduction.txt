@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"01-02-2018","REFNO":"92","ANAME":"Ramesh Chandra Parek(Due)","GWGHT":1512.584,"TUNCH":87.52,"TRANMID":"1"},
+{"RDATE":"01-02-2018","REFNO":"93","ANAME":"Kashinath Panja","GWGHT":322.562,"TUNCH":92.78,"TRANMID":"2"}
+]}

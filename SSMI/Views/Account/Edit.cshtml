@@ -1,0 +1,161 @@
+﻿@model SSMI.Models.AccountViewModels.EditUserViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="col-lg-12">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  Edit - User Registration  <div class="clearfix"> </div></h3>
+        </div>
+
+        @Html.Raw(ViewBag.msg)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                <h4>EditUserViewModel</h4>
+                                <hr />
+                                @Html.ValidationSummary(true)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserName)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.LastName)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email)
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.BrnchId, "Branch Name", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-6">
+                                        
+                                        @Html.DropDownList("BRNCHID", null, "Please select", new { @class = "form-control  BRNCHID", @data_val = "true", @data_val_required = "Field is required", @id = "BRNCHID" @*, @onchange = "BranchChange()"*@ })
+                                        @Html.ValidationMessageFor(mode => Model.BrnchId)
+                                        @Html.TextBoxFor(m => m.UBrnchName, new { @class = "form-control hide" })
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                    @Html.LabelFor(m => m.DBrnchId, "Department Name", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-6">
+                                        @Html.DropDownList("DBRNCHID", null, "Select Department", new { @class = "form-control DBRNCHID", @id = "DBRNCHID", @required = "required" })
+                                        @Html.ValidationMessageFor(mode => Model.DBrnchId)
+                                        @Html.TextBoxFor(m => m.DeptName, new { @class = "form-control hide" })
+                                    </div>
+                                </div>*@
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save" class="btn btn-success" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @*<script src="~/Scripts/Cost_factor_estimate.js"></script>*@
+
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            $("#BRNCHID").on("change", function () {
+               var bname = $('#BRNCHID :selected').text();
+                $("#UBrnchName").val($(this).find("option:selected").text());
+            });
+
+
+            $("#DBRNCHID").on("change", function () {
+                var bname = $('#DBRNCHID :selected').text();
+                $("#DeptName").val($(this).find("option:selected").text());
+            });
+
+
+        });
+
+
+        function BranchChange() {
+
+            //    var bname = $('#BRNCHID :selected').text();
+            //  $("#UBrnchName").val($(this).find("option:selected").text());
+
+            Brnchid = $('#BRNCHID :selected').val();// $(".BRNCHID").val();
+            alert(Brnchid);
+            base = window.location.origin;
+            var url = "@Url.Action("BranchDepartment", "Account")/" + Brnchid;
+            $(".DBRNCHID").empty();
+            $.getJSON(url, function (data) {
+                var i = 0; $(".DBRNCHID").append("<option value=''>select</option>");
+                $.each(data, function (key, val) {
+                    $(".DBRNCHID").append("<option value=" + val.DBRNCHID + ">" + val.DDEPTDESC + "</option>")
+                    // if (i == 0) $(".BCOUNT").val(val.BCOUNT);
+
+                    i++;
+                })
+
+
+
+            });
+        }//.....end
+            
+        //function NPass () {//...capitalize each
+        //    alert($('#ConfirmPassword').val());
+        //    $("#NPassword").val($('#ConfirmPassword').val());
+        //};
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+
+
+

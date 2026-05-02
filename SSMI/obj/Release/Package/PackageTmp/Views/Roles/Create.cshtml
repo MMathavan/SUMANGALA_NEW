@@ -1,0 +1,76 @@
+﻿@model SSMI.Models.AccountViewModels.RoleViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<div class="col-lg-12">
+    <h2>Create Role</h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  RolesViewModel  <div class="clearfix"> </div></h3>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>RolesViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @if (ViewBag.Message != "")
+        {
+            <p style="color: red">ViewBag.Message</p>
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RoleName, new { @id = "RoleName", @class = "form-control RoleName" })
+                @Html.ValidationMessageFor(model => model.RoleName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SDPTID, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.SDPTID, new SelectList(ViewBag.SDPTID, "value", "text"), new { @id = "SDPTID", @class = "form-control SDPTID" })
+                @Html.ValidationMessageFor(model => model.SDPTID)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

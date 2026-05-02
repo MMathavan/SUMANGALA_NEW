@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SSMIModelStoreContainer" CdmEntityContainer="SSMIEntities">
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="SSMIModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+          <ScalarProperty Name="NPassword" ColumnName="NPassword" />
+          <ScalarProperty Name="BrnchId" ColumnName="BrnchId" />
+          <ScalarProperty Name="UBrnchName" ColumnName="UBrnchName" />
+          <ScalarProperty Name="DBrnchId" ColumnName="DBrnchId" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_USER_DETAILS">
+      <EntityTypeMapping TypeName="SSMIModel.VW_USER_DETAILS">
+        <MappingFragment StoreEntitySet="VW_USER_DETAILS">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PR_ACCOUNTINGYEAR_ID_CHK" FunctionName="SSMIModel.Store.PR_ACCOUNTINGYEAR_ID_CHK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.PR_ACCOUNTINGYEAR_ID_CHK_Result">
+          <ScalarProperty Name="YRID" ColumnName="YRID" />
+          <ScalarProperty Name="YRDESC" ColumnName="YRDESC" />
+          <ScalarProperty Name="YRID1" ColumnName="YRID1" />
+          <ScalarProperty Name="FDATE" ColumnName="FDATE" />
+          <ScalarProperty Name="TDATE" ColumnName="TDATE" />
+          <ScalarProperty Name="YRDESC1" ColumnName="YRDESC1" />
+          <ScalarProperty Name="CUSRID" ColumnName="CUSRID" />
+          <ScalarProperty Name="PRCSDATE" ColumnName="PRCSDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PR_COMPANYACCOUNTINGDETAIL_ID_CHK" FunctionName="SSMIModel.Store.PR_COMPANYACCOUNTINGDETAIL_ID_CHK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.PR_COMPANYACCOUNTINGDETAIL_ID_CHK_Result">
+          <ScalarProperty Name="COMPYID" ColumnName="COMPYID" />
+          <ScalarProperty Name="COMPID" ColumnName="COMPID" />
+          <ScalarProperty Name="YRID" ColumnName="YRID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_CompanyDetail_Flx_Assgn" FunctionName="SSMIModel.Store.pr_CompanyDetail_Flx_Assgn">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.pr_CompanyDetail_Flx_Assgn_Result">
+          <ScalarProperty Name="COMPDID" ColumnName="COMPDID" />
+          <ScalarProperty Name="COMPID" ColumnName="COMPID" />
+          <ScalarProperty Name="COMPPONAME" ColumnName="COMPPONAME" />
+          <ScalarProperty Name="COMPPOADDR" ColumnName="COMPPOADDR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_SearchCompanyMaster" FunctionName="SSMIModel.Store.pr_SearchCompanyMaster">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.pr_SearchCompanyMaster_Result">
+          <ScalarProperty Name="COMPCODE" ColumnName="COMPCODE" />
+          <ScalarProperty Name="COMPNAME" ColumnName="COMPNAME" />
+          <ScalarProperty Name="COMPADDR" ColumnName="COMPADDR" />
+          <ScalarProperty Name="COMPPHN1" ColumnName="COMPPHN1" />
+          <ScalarProperty Name="COMPCPRSN" ColumnName="COMPCPRSN" />
+          <ScalarProperty Name="COMPMAIL" ColumnName="COMPMAIL" />
+          <ScalarProperty Name="COMPID" ColumnName="COMPID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_SearchEmployeeMaster" FunctionName="SSMIModel.Store.pr_SearchEmployeeMaster">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.pr_SearchEmployeeMaster_Result">
+          <ScalarProperty Name="CATECODE" ColumnName="CATECODE" />
+          <ScalarProperty Name="CATENAME" ColumnName="CATENAME" />
+          <ScalarProperty Name="DSGNDESC" ColumnName="DSGNDESC" />
+          <ScalarProperty Name="REGNDESC" ColumnName="REGNDESC" />
+          <ScalarProperty Name="CATECPNAME" ColumnName="CATECPNAME" />
+          <ScalarProperty Name="CATEPHN3" ColumnName="CATEPHN3" />
+          <ScalarProperty Name="CATEEMAIL" ColumnName="CATEEMAIL" />
+          <ScalarProperty Name="DISPSTATUS" ColumnName="DISPSTATUS" />
+          <ScalarProperty Name="CATEID" ColumnName="CATEID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_Search_Roles" FunctionName="SSMIModel.Store.pr_Search_Roles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.pr_Search_Roles_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Descp" ColumnName="Descp" />
+          <ScalarProperty Name="SDPTNAME" ColumnName="SDPTNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_SearchSalesOrder" FunctionName="SSMIModel.Store.pr_SearchSalesOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SSMIModel.pr_SearchSalesOrder_Result">
+          <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+          <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+          <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="DispStatus" ColumnName="DispStatus" />
+          <ScalarProperty Name="VoucherId" ColumnName="VoucherId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

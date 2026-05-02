@@ -1,0 +1,169 @@
+﻿@model SSMI.Models.AccountViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="col-lg-12">
+  
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  User Registration  <div class="clearfix"> </div></h3>
+        </div>
+
+        @Html.Raw(ViewBag.msg)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @*<h4>Create a new account.</h4>
+                        <hr />*@
+                        @Html.ValidationSummary()
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.EmplId, "Employee Name", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("EMPLID", null, "Please select", new { @class = "form-control  EMPLID", @data_val = "true", @required = "required", @data_val_required = "Field is required", @id = "EMPLID" })
+                                @Html.TextBoxFor(m => m.EmplName, new { @class = "form-control EmplName", @Id= "EmplName" })
+                                @Html.ValidationMessageFor(mode => Model.EmplId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @onchange= "NPass()" })
+                            </div>
+                        </div>
+
+                        //Add the LastName, FirstName, and Email Properties:
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(m => m.BrnchId, "Branch Name", new { @class = "col-md-2 control-label" })*@
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                            @Html.LabelFor(m => m.DBrnchId, "Department Name", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("DBRNCHID", null, "Select Department", new { @class = "form-control DBRNCHID", @id = "DBRNCHID", @required = "required" })
+                                @Html.ValidationMessageFor(mode => Model.DBrnchId)
+                                @Html.TextBoxFor(m => m.DeptName, new { @class = "form-control hide" })
+                            </div>
+                        </div>*@
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-success" value="Register" />
+                            </div>
+                        </div>
+                    }
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @*<script src="~/Scripts/Cost_factor_estimate.js"></script>*@
+
+    <script>
+
+        $(document).ready(function () {
+    
+
+
+            $("#EMPLID").on("change", function () {
+               var emplname = $('#EMPLID :selected').text();
+                $("#EmplName").val($(this).find("option:selected").text());
+            });
+
+
+
+
+        });
+
+
+        function BranchChange() {
+
+        //    var bname = $('#BRNCHID :selected').text();
+          //  $("#UBrnchName").val($(this).find("option:selected").text());
+
+            Brnchid = $('#BRNCHID :selected').val();// $(".BRNCHID").val();
+            //alert(Brnchid);
+            base = window.location.origin;
+            var url = "@Url.Action("BranchDepartment", "Account")/" + Brnchid;
+            $(".DBRNCHID").empty();
+            $.getJSON(url, function (data) {
+                var i = 0; $(".DBRNCHID").append("<option value=''>select</option>");
+                $.each(data, function (key, val) {
+                    $(".DBRNCHID").append("<option value=" + val.DBRNCHID + ">" + val.DDEPTDESC + "</option>")
+                   // if (i == 0) $(".BCOUNT").val(val.BCOUNT);
+
+                    i++;
+                })
+
+
+
+            });
+        }//.....end
+
+
+        function NPass () {//...capitalize each
+         //   alert($('#ConfirmPassword').val());
+            $("#NPassword").val($('#ConfirmPassword').val());
+        };
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

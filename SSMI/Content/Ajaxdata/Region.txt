@@ -1,0 +1,5 @@
+{"data":[
+{"DSGNCODE":"0001","DSGNDESC":"NorthEast","DISPSTATUS":"Enabled","MID":"1"},
+{"DSGNCODE":"0002","DSGNDESC":"SouthEast","DISPSTATUS":"Enabled","MID":"2"},
+{"DSGNCODE":"0003","DSGNDESC":"North","DISPSTATUS":"Enabled","MID":"3"}
+]}

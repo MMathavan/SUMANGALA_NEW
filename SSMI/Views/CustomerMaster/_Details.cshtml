@@ -1,0 +1,128 @@
+@model SSMI.Models.LedgerMasterNew
+
+@if (Model == null)
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Customer Details</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-warning">No data found.</div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+}
+else
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Customer Details</h4>
+    </div>
+    <div class="modal-body" style="max-height:70vh; overflow-y:auto;">
+        <div class="container-fluid" style="padding-left:0; padding-right:0;">
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Ledger Group Name</strong></div>
+                <div class="col-sm-8">@Model.LegerGroupName</div>
+            </div>
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Ledger Name</strong></div>
+                <div class="col-sm-8">@Model.LegerName</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 1</strong></div>
+                <div class="col-sm-8">@Model.Address1</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 2</strong></div>
+                <div class="col-sm-8">@Model.Address2</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 3</strong></div>
+                <div class="col-sm-8">@Model.Address3</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 4</strong></div>
+                <div class="col-sm-8">@Model.Address4</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 5</strong></div>
+                <div class="col-sm-8">@Model.Address5</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Address 6</strong></div>
+                <div class="col-sm-8">@Model.Address6</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>State Name</strong></div>
+                <div class="col-sm-8">@Model.StateName</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Country Name</strong></div>
+                <div class="col-sm-8">@Model.CountryName</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Pincode</strong></div>
+                <div class="col-sm-8">@Model.Pincode</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Email Id</strong></div>
+                <div class="col-sm-8">@Model.EmailId</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Website</strong></div>
+                <div class="col-sm-8">@Model.Website</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>PAN No</strong></div>
+                <div class="col-sm-8">@Model.PanNo</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>GSTIN No</strong></div>
+                <div class="col-sm-8">@Model.GSTinNo</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Ledger Contact Name</strong></div>
+                <div class="col-sm-8">@Model.LedgerContactName</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Ledger Contact No</strong></div>
+                <div class="col-sm-8">@Model.LedgerContactNo</div>
+            </div>
+
+            <hr style="margin:10px 0;" />
+
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Credit Period</strong></div>
+                <div class="col-sm-8">@Model.CreditPeriod</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Credit Limit</strong></div>
+                <div class="col-sm-8">@Model.CreditLimit</div>
+            </div>
+            <div class="row" style="margin-bottom:8px;">
+                <div class="col-sm-4"><strong>Opening Balance</strong></div>
+                <div class="col-sm-8">@Model.OpeningBalance</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+}

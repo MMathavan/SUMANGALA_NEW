@@ -1,0 +1,4 @@
+{"data":[
+{"SMCODE":"0001","SMNAME":"Ashok Kumar","SMPNAME":"Senior Sales Manager","SMPHN3":"123456789","SMMAIL":"test@gmail.com","DISPSTATUS":"Enabled","SMID":"1"},
+{"SMCODE":"0002","SMNAME":"Kumar T","SMPNAME":"Regional Manager","SMPHN3":"123456789","SMMAIL":"abc@gmail.com","DISPSTATUS":"Enabled","SMID":"2"}
+]}

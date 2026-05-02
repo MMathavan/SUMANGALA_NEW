@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","ITYPE":"INS","ANAME":"Prabha Enguneering","ENAME":"RaviRaj","IREFNO":"KGK/1771","TYPE":"CCS - R","DISPSTATUS":"Completed","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","ITYPE":"INS","ANAME":"Fusiontec Software","ENAME":"RaviRaj","IREFNO":"KGK/1772","TYPE":"CCS - R - D","DISPSTATUS":"Completed","TRANMID":"2"}
+]}

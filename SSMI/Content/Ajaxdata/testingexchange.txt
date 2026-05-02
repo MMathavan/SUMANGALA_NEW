@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"01-02-2018","REFNO":"B8998","ANAME":"Ramesh Chandra Parek(Due)","ITEMNAME":"Kambi","PCS":6.600,"NAMT":3556.00,"DISPSTATUS":null,"TRANMID":"1"},
+{"RDATE":"01-02-2018","REFNO":"B8999","ANAME":"Kashinath Panja","ITEMNAME":"Rawa","PCS":7.990,"NAMT":4120.00,"DISPSTATUS":null,"TRANMID":"2"}
+]}

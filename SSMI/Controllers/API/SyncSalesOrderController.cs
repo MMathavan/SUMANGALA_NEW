@@ -1,0 +1,422 @@
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using Newtonsoft.Json;
+using SSMI.Models;
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Helpers;
+using System.Web.Http;
+//using System.Web.Mvc;
+
+namespace SSMI.Controllers.API
+{
+    [RoutePrefix("api/syncsalesorder")]
+    public class SyncSalesOrderController : ApiController
+    {
+        //[HttpPost]
+        //[Route("save")]
+        //public IHttpActionResult SaveSalesOrder(TallyMasterDetails model)
+        //{
+        //    if (model == null)
+        //    {
+        //        return Content(
+        //            HttpStatusCode.BadRequest,
+        //            new
+        //            {
+        //                success = false,
+        //                message = "JSON not received or invalid"
+        //            }
+        //        );
+        //    }
+
+        //    // 🔍 DISPLAY / RETURN RECEIVED JSON
+        //    return Ok(new
+        //    {
+        //        success = true,
+        //        message = "JSON received successfully",
+        //        receivedData = model
+        //    });
+        //}
+
+        //[HttpPost]
+        //[Route("save")]
+        //public async Task<IHttpActionResult> SaveSalesOrder()
+        //{
+        //    string rawJson = await Request.Content.ReadAsStringAsync();
+        //    var order = await GetOrderFromApi(rawJson);
+        //    if (order != null && order.customerInfo != null)
+        //    {
+        //        SaveOrder(order);
+
+        //        return Json(new
+        //        {
+        //            status = true,
+        //            message = "Order synced successfully"
+        //        });
+        //    }
+        //    return Ok(new
+        //    {
+        //        success = true,
+        //        rawJson = rawJson
+        //    });
+        //}
+
+        //[HttpPost]
+        //[Route("save")]
+        //public IHttpActionResult SaveSalesOrder()
+        //{
+        //    try
+        //    {
+        //        var rawJson = Request.Content.ReadAsStringAsync().Result;
+
+        //        // your existing logic
+        //        var order = GetOrderFromApi(rawJson);
+
+        //        return Ok(new
+        //        {
+        //            Status = true,
+        //            Message = "Sales order saved successfully"
+        //        });
+        //    }
+        //    catch
+        //    {
+        //        return Content(HttpStatusCode.BadRequest, new
+        //        {
+        //            Status = false,
+        //            Message = "Invalid JSON format. Please verify the request payload."
+        //        });
+        //    }
+        //}
+
+        [HttpPost]
+        [Route("save")]
+        public IHttpActionResult SaveSalesOrder()
+        {
+            try
+            {
+                var rawJson = Request.Content.ReadAsStringAsync().Result;
+
+                var order = GetOrderFromApi(rawJson);
+
+                SaveOrder(order);
+
+                return Ok(new
+                {
+                    Status = true,
+                    Message = "Sales order saved successfully"
+                });
+            }
+            catch (Newtonsoft.Json.JsonReaderException ex)
+            {
+                return Content(HttpStatusCode.BadRequest, new
+                {
+                    Status = false,
+                    Message = ex.Message   // 👈 EXACT error message only
+                });
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.InternalServerError, new
+                {
+                    Status = false,
+                    Message = "An unexpected error occurred."
+                });
+            }
+        }
+
+        //public Task<SalesOrderData> GetOrderFromApi(string rawJson)
+        //{
+        //    string json = "";// "... your JSON ...";
+        //    json = rawJson;// "{\r\n  \"customerInfo\": {\r\n    \"orderID\":\"1014700SO2503509\",\r\n    \"uid\": \"8d572f80-aaa4-11d9-9f54-008048130853-000a625c\",\r\n    \"customerCode\": \"1000\",\r\n    \"customerName\": \"Kumar Agencies\",\r\n    \"address1\": \"No 12, Anna Nagar\",\r\n    \"address2\": \"West Extension\",\r\n    \"address3\": \"Near Bus Stand\",\r\n    \"address4\": \"Chennai\",\r\n    \"address5\": \"Tamil Nadu\",\r\n    \"basicbuyeraddress1\": \"24/4B, SUNDARAJANPATTI\",\r\n    \"basicbuyeraddress2\": \"MADURAI\",\r\n    \"basicbuyeraddress3\": \"625107\",\r\n    \"basicbuyeraddress4\": \"TAMILNADU\",\r\n    \"basicbuyeraddress5\": \"\",\r\n    \"date\": \"2025-04-15\",\r\n    \"statename\": \"Tamil Nadu\",\r\n    \"narration\": \"Ashok\",\r\n    \"countryofresidence\": \"India\",\r\n    \"partygstin\": \"33ASNPR1514M1ZH\",\r\n    \"placeofsupply\": \"Tamil Nadu\",\r\n    \"partyname\": \"SRI RENGA STEELS\",\r\n    \"vouchernumber\": \"4743/SSPL/25-26\",\r\n    \"partypincode\": \"625007\",\r\n    \"consigneegstin\": \"33ASNPR1514M1ZH\",\r\n    \"consigneestatename\": \"Tamil Nadu\",\r\n    \"consigneecountryname\": \"India\",\r\n    \"basicorderref\": \"550 D CRS\",\r\n    \"basicduedateofpymt\": \"10 DAYS\"\r\n  },\r\n\r\n  \"materialItemsList\": [\r\n    {\r\n      \"stockitemname\": \"BD TMT Bar 8MM 550D CRS\",\r\n      \"gsthsnname\": \"72141090\",\r\n      \"rate\": 46300.00,\r\n      \"amount\": 138900.00,\r\n      \"actualqty\": 3.0,\r\n      \"billedqty\": 3.0,\r\n      \"godownname\": \"Pondicherry\",\r\n      \"batchname\": \"Primary Batch\",\r\n      \"destinationgodownname\": \"Pondicherry\",\r\n      \"indentno\": \"\",\r\n      \"orderno\": \"4743/SSPL/25-26\",\r\n      \"orderduedate\": \"2025-12-16\",\r\n      \"CGST\": 9,\r\n      \"SGST_UTGST\": 9,\r\n      \"IGST\": 18\r\n    },\r\n    {\r\n      \"stockitemname\": \"BD TMT Bar 10MM 550D CRS\",\r\n      \"gsthsnname\": \"72141090\",\r\n      \"rate\": 45800.00,\r\n      \"amount\": 137400.00,\r\n      \"actualqty\": 3.0,\r\n      \"billedqty\": 3.0,\r\n      \"godownname\": \"Pondicherry\",\r\n      \"batchname\": \"Primary Batch\",\r\n      \"destinationgodownname\": \"Pondicherry\",\r\n      \"indentno\": \"\",\r\n      \"orderno\": \"4743/SSPL/25-26\",\r\n      \"orderduedate\": \"2025-12-16\",\r\n      \"CGST\": 9,\r\n      \"SGST_UTGST\": 9,\r\n      \"IGST\": 18\r\n    },\r\n    {\r\n      \"stockitemname\": \"BD TMT Bar 12MM 550D CRS\",\r\n      \"gsthsnname\": \"72141090\",\r\n      \"rate\": 45800.00,\r\n      \"amount\": 91600.00,\r\n      \"actualqty\": 2.0,\r\n      \"billedqty\": 2.0,\r\n      \"godownname\": \"Pondicherry\",\r\n      \"batchname\": \"Primary Batch\",\r\n      \"destinationgodownname\": \"Pondicherry\",\r\n      \"indentno\": \"\",\r\n      \"orderno\": \"4743/SSPL/25-26\",\r\n      \"orderduedate\": \"2025-12-16\",\r\n      \"CGST\": 9,\r\n      \"SGST_UTGST\": 9,\r\n      \"IGST\": 18\r\n    },\r\n    {\r\n      \"stockitemname\": \"BD TMT Bar 16MM 550D CRS\",\r\n      \"gsthsnname\": \"72141090\",\r\n      \"rate\": 45800.00,\r\n      \"amount\": 137400.00,\r\n      \"actualqty\": 3.0,\r\n      \"billedqty\": 3.0,\r\n      \"godownname\": \"Pondicherry\",\r\n      \"batchname\": \"Primary Batch\",\r\n      \"destinationgodownname\": \"Pondicherry\",\r\n      \"indentno\": \"\",\r\n      \"orderno\": \"4743/SSPL/25-26\",\r\n      \"orderduedate\": \"2025-12-16\",\r\n      \"CGST\": 9,\r\n      \"SGST_UTGST\": 9,\r\n      \"IGST\": 18\r\n    },\r\n    {\r\n      \"stockitemname\": \"BD TMT Bar 20MM 550D CRS\",\r\n      \"gsthsnname\": \"72141090\",\r\n      \"rate\": 45800.00,\r\n      \"amount\": 91600.00,\r\n      \"actualqty\": 2.0,\r\n      \"billedqty\": 2.0,\r\n      \"godownname\": \"Pondicherry\",\r\n      \"batchname\": \"Primary Batch\",\r\n      \"destinationgodownname\": \"Pondicherry\",\r\n      \"indentno\": \"\",\r\n      \"orderno\": \"4743/SSPL/25-26\",\r\n      \"orderduedate\": \"2025-12-16\",\r\n      \"CGST\": 9,\r\n      \"SGST_UTGST\": 9,\r\n      \"IGST\": 18\r\n    }\r\n  ],\r\n\r\n  \"loadingCharges\": {\r\n    \"loadingAmount\": 3900.00,\r\n    \"IGST\": 18,\r\n    \"CGST\": 9,\r\n    \"SGST_UTGST\": 9,\r\n\t\"total\":\"\"\r\n  },\r\n\r\n  \"transportationCharges\": {\r\n    \"transportationAmount\": 500.00,\r\n    \"IGST\": 18,\r\n    \"CGST\": 9,\r\n    \"SGST_UTGST\": 9,\r\n\t\"total\":\"\"\r\n  },\r\n\r\n  \"grandTotal\": 707764\r\n}";
+        //    //JObject obj = JObject.Parse(json);
+
+        //    //json = JsonConvert.SerializeObject(json);
+        //    return Task.FromResult(JsonConvert.DeserializeObject<SalesOrderData>(json));
+        //}
+
+        public SalesOrderData GetOrderFromApi(string rawJson)
+        {
+            return JsonConvert.DeserializeObject<SalesOrderData>(rawJson);
+        }
+
+        public void SaveOrder(SalesOrderData order)
+        {
+            string _connStr = ConfigurationManager
+                .ConnectionStrings["SSMI_DefaultConnection"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(_connStr))
+            {
+                con.Open();
+                SqlTransaction tran = con.BeginTransaction();
+
+                try
+                {
+                    //SqlCommand del = new SqlCommand(
+                    //    "DELETE FROM SalesOrderItems WHERE OrderNo=@OrderNo; " +
+                    //    "DELETE FROM SalesOrderHeader WHERE OrderNo=@OrderNo",
+                    //    con, tran);
+
+                    SqlCommand del = new SqlCommand(
+                                "DELETE FROM Tally_Voucher WHERE RegstrId = 1 And VoucherNumber = @OrderNo; ",
+                                con, tran);
+
+                    del.Parameters.AddWithValue("@OrderNo", order.customerInfo.vouchernumber);
+                    del.ExecuteNonQuery();
+
+                    using (SqlCommand hdr = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher
+                            (RemoteId, VoucherType, VoucherNumber, VoucherDate, PartyName, Party_Addr1, 
+                             Party_Addr2, Party_Addr3, Party_Addr4, Party_Addr5, Party_StateDesc, 
+                             Party_Pincode, Party_Country, Party_Desp_Addr1, Party_Desp_Addr2, 
+                             Party_Desp_Addr3, Party_Desp_Addr4, Party_Desp_Addr5, Party_Desp_StateDesc, 
+                             Party_Desp_Pincode, Party_Desp_Country, PartyGSTIN, PlaceOfSupply, 
+                             BilltoPlace, ShiptoPlace, BasicOrderRef, BasicShipVesselNo, 
+                             BasicBuyersSalesTaxNo, BasicDueDateOfPymt, Narration, TotalAmount, RoundoffAmt, IRN, 
+                             IRNAckNo, IRNAckDate, CreatedOn, RegstrId)
+                            OUTPUT INSERTED.VoucherId
+                            VALUES (@RemoteId, @VoucherType, @VoucherNumber, @VoucherDate, @PartyName, @Party_Addr1, 
+                             @Party_Addr2, @Party_Addr3, @Party_Addr4, @Party_Addr5, @Party_StateDesc, 
+                             @Party_Pincode, @Party_Country, @Party_Desp_Addr1, @Party_Desp_Addr2, 
+                             @Party_Desp_Addr3, @Party_Desp_Addr4, @Party_Desp_Addr5, @Party_Desp_StateDesc, 
+                             @Party_Desp_Pincode, @Party_Desp_Country, @PartyGSTIN, @PlaceOfSupply, 
+                             @BilltoPlace, @ShiptoPlace, @BasicOrderRef, @BasicShipVesselNo, 
+                             @BasicBuyersSalesTaxNo, @BasicDueDateOfPymt, @Narration, @TotalAmount, @RoundoffAmt, @IRN, 
+                             @IRNAckNo, @IRNAckDate, @CreatedOn, @RegstrId)", con, tran))
+                    {
+                        hdr.Parameters.AddWithValue("@RemoteId", order.customerInfo.uid);
+                        hdr.Parameters.AddWithValue("@VoucherType", "Sales Order");
+                        hdr.Parameters.AddWithValue("@VoucherNumber", order.customerInfo.vouchernumber);
+                        hdr.Parameters.AddWithValue("@VoucherDate", order.customerInfo.date);
+                        hdr.Parameters.AddWithValue("@PartyName", order.customerInfo.partyname);
+
+                        hdr.Parameters.AddWithValue("@Party_Addr1", string.IsNullOrEmpty(order.customerInfo.address1) ? (object)DBNull.Value : order.customerInfo.address1);
+                        hdr.Parameters.AddWithValue("@Party_Addr2", string.IsNullOrEmpty(order.customerInfo.address2) ? (object)DBNull.Value : order.customerInfo.address2);
+                        hdr.Parameters.AddWithValue("@Party_Addr3", string.IsNullOrEmpty(order.customerInfo.address3) ? (object)DBNull.Value : order.customerInfo.address3);
+                        hdr.Parameters.AddWithValue("@Party_Addr4", string.IsNullOrEmpty(order.customerInfo.address4) ? (object)DBNull.Value : order.customerInfo.address4);
+                        hdr.Parameters.AddWithValue("@Party_Addr5", string.IsNullOrEmpty(order.customerInfo.address5) ? (object)DBNull.Value : order.customerInfo.address5);
+                        //hdr.Parameters.AddWithValue("@Party_Addr1", order.customerInfo.address1);
+                        //hdr.Parameters.AddWithValue("@Party_Addr2", order.customerInfo.address2);
+                        //hdr.Parameters.AddWithValue("@Party_Addr3", order.customerInfo.address3);
+                        //hdr.Parameters.AddWithValue("@Party_Addr4", order.customerInfo.address4);
+                        //hdr.Parameters.AddWithValue("@Party_Addr5", order.customerInfo.address5);
+                        hdr.Parameters.AddWithValue("@Party_StateDesc", order.customerInfo.statename);
+                        hdr.Parameters.AddWithValue("@Party_Pincode", order.customerInfo.partypincode);
+                        hdr.Parameters.AddWithValue("@Party_Country", order.customerInfo.consigneecountryname);
+                        //hdr.Parameters.AddWithValue("@Party_Desp_Addr1", order.customerInfo.basicbuyeraddress1);
+                        //hdr.Parameters.AddWithValue("@Party_Desp_Addr2", order.customerInfo.basicbuyeraddress2);
+                        //hdr.Parameters.AddWithValue("@Party_Desp_Addr3", order.customerInfo.basicbuyeraddress3);
+                        //hdr.Parameters.AddWithValue("@Party_Desp_Addr4", order.customerInfo.basicbuyeraddress4);
+                        //hdr.Parameters.AddWithValue("@Party_Desp_Addr5", order.customerInfo.basicbuyeraddress5);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Addr1", string.IsNullOrEmpty(order.customerInfo.basicbuyeraddress1) ? (object)DBNull.Value : order.customerInfo.basicbuyeraddress1);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Addr2", string.IsNullOrEmpty(order.customerInfo.basicbuyeraddress2) ? (object)DBNull.Value : order.customerInfo.basicbuyeraddress2);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Addr3", string.IsNullOrEmpty(order.customerInfo.basicbuyeraddress3) ? (object)DBNull.Value : order.customerInfo.basicbuyeraddress3);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Addr4", string.IsNullOrEmpty(order.customerInfo.basicbuyeraddress4) ? (object)DBNull.Value : order.customerInfo.basicbuyeraddress4);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Addr5", string.IsNullOrEmpty(order.customerInfo.basicbuyeraddress5) ? (object)DBNull.Value : order.customerInfo.basicbuyeraddress5);
+                        hdr.Parameters.AddWithValue("@Party_Desp_StateDesc", order.customerInfo.consigneestatename);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Pincode", order.customerInfo.partypincode);
+                        hdr.Parameters.AddWithValue("@Party_Desp_Country", order.customerInfo.consigneecountryname);
+                        //hdr.Parameters.AddWithValue("@PartyGSTIN", order.customerInfo.partygstin);
+                        hdr.Parameters.AddWithValue("@PartyGSTIN", string.IsNullOrEmpty(order.customerInfo.partygstin) ? (object)DBNull.Value : order.customerInfo.partygstin);
+                        hdr.Parameters.AddWithValue("@PlaceOfSupply", order.customerInfo.placeofsupply);
+                        hdr.Parameters.AddWithValue("@BilltoPlace", order.customerInfo.placeofsupply);
+                        hdr.Parameters.AddWithValue("@ShiptoPlace", order.customerInfo.placeofsupply);
+
+                        hdr.Parameters.AddWithValue("@BasicOrderRef", order.customerInfo.basicorderref);
+                        hdr.Parameters.AddWithValue("@BasicShipVesselNo", "-");
+                        hdr.Parameters.AddWithValue("@BasicBuyersSalesTaxNo", "-");
+                        hdr.Parameters.AddWithValue("@BasicDueDateOfPymt", order.customerInfo.basicduedateofpymt);
+                        //hdr.Parameters.AddWithValue("@Narration", order.customerInfo.narration);
+                        hdr.Parameters.AddWithValue("@Narration", string.IsNullOrEmpty(order.customerInfo.narration) ? (object)DBNull.Value : order.customerInfo.narration);
+                        hdr.Parameters.AddWithValue("@TotalAmount", order.GrandTotal);
+                        hdr.Parameters.AddWithValue("@RoundoffAmt", order.RoundOff);
+                        hdr.Parameters.AddWithValue("@IRN", "-");
+                        hdr.Parameters.AddWithValue("@IRNAckNo", "-");
+                        hdr.Parameters.AddWithValue("@IRNAckDate", DBNull.Value);
+                        hdr.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
+                        hdr.Parameters.AddWithValue("@RegstrId", 1);
+
+                        long voucherId = (long)hdr.ExecuteScalar();
+
+                        //Stock Item List
+                        foreach (var item in order.materialItemsList)
+                        {
+                            SqlCommand itm = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Inventory
+                            (VoucherId, StockItemName, HSNCode, Quantity, Rate, UnitCode, 
+                             Amount, GodownName, BatchName, OrderNo, OrderDueDate, LedgerName, 
+                             ClassRate, CGSTExprn, SGSTExprn, IGSTExprn)
+                            VALUES (@VoucherId,@StockItemName,@HSNCode,@Quantity,@Rate,
+                            @UnitCode,@Amount,@GodownName,@BatchName,@OrderNo,@OrderDueDate,
+                            @LedgerName,@ClassRate,@CGSTExprn,@SGSTExprn,@IGSTExprn)", con, tran);
+
+                            itm.Parameters.AddWithValue("@VoucherId", voucherId);
+                            itm.Parameters.AddWithValue("@StockItemName", item.stockitemname);
+                            //itm.Parameters.AddWithValue("@HSNCode", item.gsthsnname);
+                            //itm.Parameters.AddWithValue("@HSNCode",string.IsNullOrEmpty(item.gsthsnname)? (object)DBNull.Value: item.gsthsnname);
+                            itm.Parameters.AddWithValue("@HSNCode", string.IsNullOrWhiteSpace(item.gsthsnname) ? "-" : item.gsthsnname);
+                            itm.Parameters.AddWithValue("@Quantity", item.billedqty);
+                            itm.Parameters.AddWithValue("@Rate", item.rate);
+                            itm.Parameters.AddWithValue("@UnitCode", item.unitcode);
+                            itm.Parameters.AddWithValue("@Amount", item.amount);
+                            itm.Parameters.AddWithValue("@GodownName", item.godownname);
+                            itm.Parameters.AddWithValue("@BatchName", item.batchname);
+                            itm.Parameters.AddWithValue("@OrderNo", item.orderno);
+                            //itm.Parameters.AddWithValue("@OrderDueDate", item.orderduedate);
+                            itm.Parameters.AddWithValue("@OrderDueDate", string.IsNullOrEmpty(item.orderduedate) ? (object)DBNull.Value : item.orderduedate);
+                            //itm.Parameters.AddWithValue("@LedgerName", order.customerInfo.partygstin);
+                            itm.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.customerInfo.partygstin) ? "-" : order.customerInfo.partygstin);
+                            itm.Parameters.AddWithValue("@ClassRate", item.classrate);
+                            itm.Parameters.AddWithValue("@CGSTExprn", item.cgstexprn);
+                            itm.Parameters.AddWithValue("@SGSTExprn", item.sgstexprn);
+                            itm.Parameters.AddWithValue("@IGSTExprn", item.igstexprn);
+
+                            itm.ExecuteNonQuery();
+                        }
+
+                        //Party Ledger Details
+                        //foreach (var lc_item in order.loadingchargesList)
+                        //{
+                        SqlCommand pld = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                        pld.Parameters.AddWithValue("@VoucherId", voucherId);
+                        //pld.Parameters.AddWithValue("@LedgerName", order.loadingCharges.ldgrname);
+                        //pld.Parameters.AddWithValue("@LedgerName",order.loadingCharges?.ldgrname == null? (object)DBNull.Value: order.loadingCharges.ldgrname);
+                        pld.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.customerInfo.partyname) ? "-" : order.customerInfo.partyname);
+                        pld.Parameters.AddWithValue("@IsPartyLedger", 1); //0 - "No" 1 - "Yes"
+                        pld.Parameters.AddWithValue("@IsTaxLedger", 0);
+                        pld.Parameters.AddWithValue("@Amount", order.GrandTotal);
+                        pld.ExecuteNonQuery();
+                        //}
+
+
+                        //Loading Charges
+                        //foreach (var lc_item in order.loadingchargesList)
+                        //{
+                        if (order.loadingCharges.amount > 0)
+                        {
+                            SqlCommand lcl = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                            lcl.Parameters.AddWithValue("@VoucherId", voucherId);
+                            //lcl.Parameters.AddWithValue("@LedgerName", order.loadingCharges.ldgrname);
+                            //lcl.Parameters.AddWithValue("@LedgerName",order.loadingCharges?.ldgrname == null? (object)DBNull.Value: order.loadingCharges.ldgrname);
+                            lcl.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.loadingCharges?.ldgrname) ? "-" : order.loadingCharges.ldgrname);
+                            lcl.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                            lcl.Parameters.AddWithValue("@IsTaxLedger", 0);
+                            lcl.Parameters.AddWithValue("@Amount", order.loadingCharges.amount);
+                            lcl.ExecuteNonQuery();
+                        }
+                        //}
+
+                        //Transport Charges
+                        //foreach (var tp_item in order.transportchargesList)
+                        //{
+                        //if (order.transportationCharges.amount > 0)
+                        //{
+                        //    SqlCommand tpc = new SqlCommand(@"
+                        //    INSERT INTO Tally_Voucher_Ledger
+                        //    (VoucherId, LedgerName, IsPartyLedger, Amount)
+                        //    VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@Amount)", con, tran);
+
+                        //    tpc.Parameters.AddWithValue("@VoucherId", voucherId);
+                        //    //tpc.Parameters.AddWithValue("@LedgerName", order.transportationCharges.ldgrname);
+                        //    tpc.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.transportationCharges?.ldgrname) ? "-" : order.transportationCharges.ldgrname);
+                        //    tpc.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                        //    tpc.Parameters.AddWithValue("@Amount", order.transportationCharges.amount);
+                        //    tpc.ExecuteNonQuery();
+                        //}
+                        //}
+
+                        //CGST
+                        if (order.cgst.amount > 0)
+                        {
+                            SqlCommand lcl = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                            lcl.Parameters.AddWithValue("@VoucherId", voucherId);
+                            lcl.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.cgst?.ldgrname) ? "-" : order.cgst.ldgrname);
+                            lcl.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                            lcl.Parameters.AddWithValue("@IsTaxLedger", 1);
+                            lcl.Parameters.AddWithValue("@Amount", order.cgst.amount);
+                            lcl.ExecuteNonQuery();
+                        }
+
+                        //SGST
+                        if (order.sgst.amount > 0)
+                        {
+                            SqlCommand lcl = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                            lcl.Parameters.AddWithValue("@VoucherId", voucherId);
+                            lcl.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.sgst?.ldgrname) ? "-" : order.sgst.ldgrname);
+                            lcl.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                            lcl.Parameters.AddWithValue("@IsTaxLedger", 1);
+                            lcl.Parameters.AddWithValue("@Amount", order.sgst.amount);
+                            lcl.ExecuteNonQuery();
+                        }
+
+                        //IGST
+                        if (order.igst.amount > 0)
+                        {
+                            SqlCommand lcl = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                            lcl.Parameters.AddWithValue("@VoucherId", voucherId);
+                            lcl.Parameters.AddWithValue("@LedgerName", string.IsNullOrWhiteSpace(order.igst?.ldgrname) ? "-" : order.igst.ldgrname);
+                            lcl.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                            //lcl.Parameters.AddWithValue("@IsTaxLedger", 0);
+                            lcl.Parameters.AddWithValue("@IsTaxLedger", 1);
+                            lcl.Parameters.AddWithValue("@Amount", order.igst.amount);
+                            lcl.ExecuteNonQuery();
+                        }
+
+                        //Rounding Off
+                        if (order.RoundOff != 0)
+                        {
+                            SqlCommand tpc = new SqlCommand(@"
+                            INSERT INTO Tally_Voucher_Ledger
+                            (VoucherId, LedgerName, IsPartyLedger, IsTaxLedger, Amount)
+                            VALUES (@VoucherId,@LedgerName,@IsPartyLedger,@IsTaxLedger,@Amount)", con, tran);
+
+                            tpc.Parameters.AddWithValue("@VoucherId", voucherId);
+                            //tpc.Parameters.AddWithValue("@LedgerName", order.transportationCharges.ldgrname);
+                            tpc.Parameters.AddWithValue("@LedgerName", "Rounding Off");
+                            tpc.Parameters.AddWithValue("@IsPartyLedger", 0); //0 - "No" 1 - "Yes"
+                            tpc.Parameters.AddWithValue("@IsTaxLedger", 2);
+                            tpc.Parameters.AddWithValue("@Amount", order.RoundOff);
+                            tpc.ExecuteNonQuery();
+                        }
+
+
+                        //hdr.ExecuteNonQuery();
+                        tran.Commit();
+                    }
+
+
+
+                    // tran.Commit();
+                }
+                catch
+                {
+                    tran.Rollback();
+                    throw;
+                }
+            }
+        }
+
+    }
+}

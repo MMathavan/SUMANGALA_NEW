@@ -1,0 +1,65 @@
+﻿@model SSMI.Models.AccountViewModels.SelectUserGroupsViewModel
+@{ ViewBag.Title = "User Groups"; }
+<h2>Groups for user @Html.DisplayFor(model => model.UserName)</h2>
+<hr />
+
+
+<div class="col-lg-12">
+    @*<h2>@ViewBag.Title.</h2>*@
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  User Groups  <div class="clearfix"> </div></h3>
+        </div>
+
+        @Html.Raw(ViewBag.msg)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+
+                    @using (Html.BeginForm("UserGroups", "Account", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.HiddenFor(model => model.UserName)
+                                </div>
+                            </div>
+                            <h4>Select Group Assignments</h4>
+                            @*<br />*@
+                            <hr />
+                            <table>
+                                <tr>
+                                    <th>
+                                        Select
+                                    </th>
+                                    <th>
+                                        Group
+                                    </th>
+                                </tr>
+                                @Html.EditorFor(model => model.Groups)
+                            </table>
+                            @*<br />*@
+                            <hr />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

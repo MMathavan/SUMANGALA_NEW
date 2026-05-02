@@ -1,0 +1,75 @@
+﻿@using SSMI.Models
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+
+<div class="col-lg-12">
+    <h2>@ViewBag.Title.</h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  Change Password  <div class="clearfix"> </div></h3>
+        </div>
+
+        @Html.Raw(ViewBag.msg)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-body">
+
+                    <p class="text-success">@ViewBag.StatusMessage</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (ViewBag.HasLocalPassword)
+                            {
+                                @Html.Partial("_ChangePasswordPartial")
+                            }
+                            else
+                            {
+                                @Html.Partial("_SetPasswordPartial")
+                            }
+                        </div>
+                    </div>
+
+                    <div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            if (System.Web.HttpContext.Current.Session["Group"].ToString() == "Manager" || System.Web.HttpContext.Current.Session["Group"].ToString() == "Admin" || System.Web.HttpContext.Current.Session["Group"].ToString() == "Purchaseadmin")
+                            {
+                                @Html.ActionLink("Back to List", "Index")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Back to List", "CIndex")
+                            }
+                        }
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+
+<script>
+
+        function NPass () {//...capitalize each
+         //   alert($('#ConfirmPassword').val());
+            $("#NPassword").val($('#ConfirmPassword').val());
+        };
+
+</script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

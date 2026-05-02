@@ -1,0 +1,4 @@
+{"data":[
+{"RDATE":"21-12-2018","REFNO":"0001","ANAME":"Symega Food Ingredients Ltd.","TYPE":"Invoice","NAMT":259871.42,"DISPSTATUS":"FOC Approved","TRANMID":"1"},
+{"RDATE":"21-12-2018","REFNO":"0002","ANAME":"Fusiontec Software","TYPE":"Demo","NAMT":119870.00,"DISPSTATUS":"Logistics Approved","TRANMID":"2"}
+]}
