@@ -55,6 +55,9 @@ namespace SSMI.Models
         public string SyncError { get; set; }
         public DateTime? SyncOn { get; set; }
         public decimal RoundoffAmt { get; set; }
+        public int PreSyncStatus { get; set; }
+        public DateTime? PreSyncOn { get; set; }
+        public string PreSyncError { get; set; }
 
         public virtual ICollection<Tally_Voucher_Inventory> InventoryLines { get; set; }
         public virtual ICollection<Tally_Voucher_Ledger> LedgerLines { get; set; }

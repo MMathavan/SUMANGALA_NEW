@@ -28,6 +28,9 @@ namespace SSMI.Models
         public decimal CGSTExprn { get; set; }
         public decimal SGSTExprn { get; set; }
         public decimal IGSTExprn { get; set; }
+        public decimal OrderPreClosureQty { get; set; }
+        public DateTime? OrderPreClosureDate { get; set; }
+        public string OrderClosureReason { get; set; }
 
         [ForeignKey("VoucherId")]
         public virtual Tally_Voucher Voucher { get; set; }

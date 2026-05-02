@@ -235,6 +235,7 @@
     <Compile Include="Controllers\NavbarController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SalesOrder\SalesOrderController.cs" />
+    <Compile Include="Controllers\SalesOrder\SalesOrderPCController.cs" />
     <Compile Include="Controllers\SalesInvoice\SalesInvoiceController.cs" />
     <Compile Include="Data\AspNetUser.cs">
       <DependentUpon>SSMI.tt</DependentUpon>

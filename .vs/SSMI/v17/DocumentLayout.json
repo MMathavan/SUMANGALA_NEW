@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|d:\\fusiontec client completedprojects\\ssmi_30042026\\ssmi_19122025\\ssmi\\views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|solutionrelative:ssmi\\views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\ssmi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|d:\\fusiontec client completedprojects\\ssmi_30042026\\ssmi_19122025\\ssmi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|solutionrelative:ssmi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
@@ -15,7 +11,7 @@
       "RelativeMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|solutionrelative:ssmi\\controllers\\api\\syncsalesordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|d:\\fusiontec client completedprojects\\ssmi_30042026\\ssmi_19122025\\ssmi\\controllers\\api\\ssmiapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\ssmi\\controllers\\api\\ssmiapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A53AD86-F83F-4992-99D1-33DAC7C4CBB5}|SSMI\\SSMI.csproj|solutionrelative:ssmi\\controllers\\api\\ssmiapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -114,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "NewSyncPreCloseSalesOrderController.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Controllers\\API\\NewSyncPreCloseSalesOrderController.cs",
               "RelativeDocumentMoniker": "SSMI\\Controllers\\API\\NewSyncPreCloseSalesOrderController.cs",
@@ -127,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "TallySalesInvoice.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Models\\TallySalesInvoice.cs",
               "RelativeDocumentMoniker": "SSMI\\Models\\TallySalesInvoice.cs",
@@ -139,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Web.config",
               "RelativeDocumentMoniker": "SSMI\\Web.config",
@@ -152,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SSMIAPIController.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Controllers\\API\\SSMIAPIController.cs",
               "RelativeDocumentMoniker": "SSMI\\Controllers\\API\\SSMIAPIController.cs",
@@ -160,12 +156,11 @@
               "RelativeToolTip": "SSMI\\Controllers\\API\\SSMIAPIController.cs",
               "ViewState": "AgIAABcCAAAAAAAAAAAwwJMCAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T03:14:23.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-29T03:14:23.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ApiPreCloseResponse.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Models\\ApiPreCloseResponse.cs",
               "RelativeDocumentMoniker": "SSMI\\Models\\ApiPreCloseResponse.cs",
@@ -177,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "ApiResponse.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Models\\ApiResponse.cs",
               "RelativeDocumentMoniker": "SSMI\\Models\\ApiResponse.cs",
@@ -189,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "SyncPreCloseSalesOrderController.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Controllers\\API\\SyncPreCloseSalesOrderController.cs",
               "RelativeDocumentMoniker": "SSMI\\Controllers\\API\\SyncPreCloseSalesOrderController.cs",
@@ -202,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "SyncSalesOrderController.cs",
               "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Controllers\\API\\SyncSalesOrderController.cs",
               "RelativeDocumentMoniker": "SSMI\\Controllers\\API\\SyncSalesOrderController.cs",
@@ -217,7 +212,7 @@
         },
         {
           "DockedWidth": 826,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -226,19 +221,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_navbar.cshtml",
-              "DocumentMoniker": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Views\\Shared\\_navbar.cshtml",
-              "RelativeDocumentMoniker": "SSMI\\Views\\Shared\\_navbar.cshtml",
-              "ToolTip": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Views\\Shared\\_navbar.cshtml",
-              "RelativeToolTip": "SSMI\\Views\\Shared\\_navbar.cshtml",
-              "ViewState": "AgIAAMABAAAAAAAAAAAqwMcBAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-02T05:06:40.73Z",
-              "EditorCaption": ""
             }
           ]
         }
