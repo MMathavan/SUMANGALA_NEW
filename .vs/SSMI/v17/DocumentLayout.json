@@ -141,7 +141,7 @@
               "RelativeDocumentMoniker": "SSMI\\Web.config",
               "ToolTip": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Web.config",
               "RelativeToolTip": "SSMI\\Web.config",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAwB4AAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwB4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2026-03-29T03:17:59.347Z",
               "EditorCaption": ""
@@ -214,10 +214,6 @@
           "DockedWidth": 826,
           "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"

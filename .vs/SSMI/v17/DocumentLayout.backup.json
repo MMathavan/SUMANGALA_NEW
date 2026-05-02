@@ -118,8 +118,7 @@
               "RelativeToolTip": "SSMI\\Controllers\\API\\NewSyncPreCloseSalesOrderController.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAAAACkAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T19:10:01.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-09T19:10:01.532Z"
             },
             {
               "$type": "Document",
@@ -141,7 +140,7 @@
               "RelativeDocumentMoniker": "SSMI\\Web.config",
               "ToolTip": "D:\\FUSIONTEC CLIENT COMPLETEDPROJECTS\\SSMI_30042026\\SSMI_19122025\\SSMI\\Web.config",
               "RelativeToolTip": "SSMI\\Web.config",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAwB4AAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2026-03-29T03:17:59.347Z",
               "EditorCaption": ""
@@ -192,8 +191,7 @@
               "RelativeToolTip": "SSMI\\Controllers\\API\\SyncPreCloseSalesOrderController.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T13:51:38.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-22T13:51:38.027Z"
             },
             {
               "$type": "Document",
@@ -205,22 +203,7 @@
               "RelativeToolTip": "SSMI\\Controllers\\API\\SyncSalesOrderController.cs",
               "ViewState": "AgIAAIEBAAAAAAAAAAAwwI4BAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-22T07:55:31.187Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 826,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "WhenOpened": "2026-03-22T07:55:31.187Z"
             }
           ]
         }
